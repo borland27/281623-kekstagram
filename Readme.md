@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
 * Студент: [Николай Попков](https://up.htmlacademy.ru/javascript/11/user/281623).
-* Наставник: `Неизвестно`.
+* Наставник: `Вадим Чистохвалов`(https://htmlacademy.ru/profile/id519873).
 
 ---
 
