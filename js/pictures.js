@@ -48,6 +48,6 @@ var renderGalleryOverlay = function (photo) {
   var galleryOverlayImg = document.querySelector('.gallery-overlay-image');
   galleryOverlayImg.setAttribute('src', photo.url);
   galleryOverlay.querySelector('.likes-count').textContent = photo.likes;
-  galleryOverlay.querySelector('comments-count').textContent = photo.comments;
+  galleryOverlay.querySelector('.comments-count').textContent = photo.comments;
 };
 renderGalleryOverlay(photos[1]);
