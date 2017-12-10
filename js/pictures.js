@@ -18,16 +18,21 @@ var getRandomLike = function (min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
-var photos = [];
-for (var i = 1; i <= 25; i++) {
-  var photoArray = {
-    url: 'photos/' + [i] + '.jpg',
-    likes: getRandomLike(15, 200),
-    comments: getRandomInteger()
-  };
-  photos.push(photoArray);
-}
 
+var createPhotoArr = function () {
+  var photos = [];
+  for (var i = 1; i <= 25; i++) {
+    var photoArray = {
+      url: 'photos/' + [i] + '.jpg',
+      likes: getRandomLike(15, 200),
+      comments: getRandomInteger()
+    };
+    photos.push(photoArray);
+  }
+  return photos;
+};
+
+var photos = createPhotoArr();
 
 var getRandomPicture = function (img) {
   var pictureTemplate = document.querySelector('#picture-template').content.querySelector('.picture');
