@@ -19,7 +19,7 @@ var getRandomLike = function (min, max) {
 };
 
 
-var createPhotoArr = function () {
+var createPhotoArray = function () {
   var photos = [];
   for (var i = 1; i <= 25; i++) {
     var photoArray = {
@@ -32,7 +32,7 @@ var createPhotoArr = function () {
   return photos;
 };
 
-var photos = createPhotoArr();
+var photos = createPhotoArray();
 
 var getRandomPicture = function (img) {
   var pictureTemplate = document.querySelector('#picture-template').content.querySelector('.picture');
