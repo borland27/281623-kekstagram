@@ -3,6 +3,10 @@
 
 var pictures = document.querySelector('.pictures');
 var fragment = document.createDocumentFragment();
+var closePictureEnter = document.querySelector('.gallery-overlay-close');
+var galleryOverlay = document.querySelector('.gallery-overlay');
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
 
 var comments = [
   'Всё отлично!',
@@ -21,9 +25,9 @@ var getRandomLike = function (min, max) {
 
 var createPhotoArray = function () {
   var photos = [];
-  for (var i = 1; i <= 25; i++) {
+  for (var i = 0; i <= 25; i++) {
     var photoArray = {
-      url: 'photos/' + [i] + '.jpg',
+      url: 'photos/' + (i + 1) + '.jpg',
       likes: getRandomLike(15, 200),
       comments: getRandomInteger()
     };
@@ -55,7 +59,6 @@ pictures.appendChild(fragment);
 
 
 var renderGalleryOverlay = function (photo) {
-  var galleryOverlay = document.querySelector('.gallery-overlay');
   galleryOverlay.classList.remove('hidden');
   var galleryOverlayImg = document.querySelector('.gallery-overlay-image');
   galleryOverlayImg.setAttribute('src', photo.url);
@@ -63,3 +66,40 @@ var renderGalleryOverlay = function (photo) {
   galleryOverlay.querySelector('.comments-count').textContent = photo.comments;
 };
 renderGalleryOverlay(photos[1]);
+
+
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePicture();
+  }
+};
+
+var openPicture = function () {
+  galleryOverlay.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closePicture = function () {
+  galleryOverlay.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+pictures.addEventListener('click', function () {
+  openPicture();
+});
+
+pictures.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPicture();
+  }
+});
+
+closePictureEnter.addEventListener('click', function () {
+  closePicture();
+});
+
+closePictureEnter.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePicture();
+  }
+});
