@@ -2,7 +2,6 @@
 
 
 var pictures = document.querySelector('.pictures');
-var picturesAll = document.querySelectorAll('.pictures');
 var fragment = document.createDocumentFragment();
 var galleryOverlayClose = document.querySelector('.gallery-overlay-close');
 var galleryOverlay = document.querySelector('.gallery-overlay');
@@ -83,9 +82,10 @@ var onPopupEscPress = function (evt) {
 };
 
 
-var openPicture = function () {
-  galleryOverlay.classList.remove('hidden');
-  document.addEventListener('keydown', onPopupEscPress);
+var onPopupEnterPress = function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePicture();
+  }
 };
 
 
@@ -96,29 +96,15 @@ var closePicture = function () {
 
 
 var renderPicturesAll = function () {
+  var picturesAll = document.querySelectorAll('.pictures');
   for (var i = 0; i < picturesAll.length; i++) {
-    picturesAll[i].addEventListener('click', function (evt) {
-      renderGalleryOverlay(evt);
-    });
+    picturesAll[i].addEventListener('click', renderGalleryOverlay);
   }
 };
 renderPicturesAll();
 
 
-pictures.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    openPicture();
-  }
-});
-
-
 galleryOverlayClose.addEventListener('click', function () {
   closePicture();
 });
-
-
-galleryOverlayClose.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    closePicture();
-  }
-});
+galleryOverlayClose.addEventListener('keydown', onPopupEnterPress);
